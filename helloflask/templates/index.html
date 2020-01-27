@@ -1,0 +1,55 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Jinja Test Page</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/style.css') }}">
+</head>
+<body>
+    <div> Jinja Test : {{title}} - {{mu}}</div>
+    
+    <!-- reculsive for loop / reculsive되면 함수로 바뀜(함수이름 loop)-->
+    <hr>
+    
+
+    <ul>
+        {% for rank, title, name, hide, ref in lst recursive %}
+        <li>
+            {{title}}: {{name}}
+            <ul class="sub">{{ loop(ref) }}</ul>
+        </li>
+        {% endfor %}
+    </ul>
+ 
+        
+    <hr>
+    <!-- -표시는 공백을 없애기 위해 사용된다.-->
+    <pre>
+        ttt 한글
+            {%- if True -%}
+                TTT
+            {%- endif -%} qqq
+
+    </pre>
+
+
+    <!-- html에서 /{/{ 코드 /}/} 들어감 notation 주의 -->
+    <!-- escape : URI로 데이터를 전달하기 위해서 문자열을 인코딩 -->
+    <!-- 참고 : https://opentutorials.org/course/50/191-->
+
+    {{ "}}>> <strong>Strong</strong>" | escape}}
+
+    <hr>
+
+    {{ "<strong>Strong</strong>" | safe}}
+    {{ " /" }}
+    {{ "<strong>Strong</strong>" | striptags}}
+
+ 
+    
+
+</body>
+</html>
